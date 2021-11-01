@@ -1,4 +1,6 @@
 import Posts.*;
+import Posts.Multimedia.PostImagen;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -55,17 +57,16 @@ public class QueOndaMano {
                 int opcion = v.mostrarMenuTipoPost();
                 String autor;
                 Date fechaDePublicacion;
+                ArrayList<String> hashtags = new ArrayList<>();
                 switch(opcion){
                     case 1: // Texto
                         String mensaje = v.pedirMensaje();
                         autor = v.pedirAutor();
                         fechaDePublicacion = v.pedirFechaDePublicacion();
                         if(incluirHashtags()){
-                            ArrayList<String> hashtags = v.pedirHashtags();
-                            posts.add(new Posts.PostTexto(mensaje, hashtags, autor, fechaDePublicacion));
-                        }else{
-                            posts.add(new Posts.PostTexto(mensaje, autor, fechaDePublicacion));
+                            hashtags = v.pedirHashtags();
                         }
+                        posts.add(new PostTexto(mensaje, autor, hashtags, fechaDePublicacion));
                         opcionValida = true;
                         v.mostrarPublicado();
                     break;
@@ -74,15 +75,26 @@ public class QueOndaMano {
                         autor = v.pedirAutor();
                         fechaDePublicacion = v.pedirFechaDePublicacion();
                         if(incluirHashtags()){
-                            ArrayList<String> hashtags = v.pedirHashtags();
-                            posts.add(new Posts.PostEmoticon(emoticon, hashtags, autor, fechaDePublicacion));
-                        }else{
-                            posts.add(new Posts.PostEmoticon(emoticon, autor, fechaDePublicacion));
+                            hashtags = v.pedirHashtags();
                         }
+                        posts.add(new PostEmoticon(emoticon, autor, hashtags, fechaDePublicacion));
                         opcionValida = true;
                         v.mostrarPublicado();
                     break;
                     case 3: // Imagen
+                        String formato = v.pedirFormato();
+                        int resolucion = v.pedirResolucion();
+                        String url = v.pedirURL();
+                        int tamanio = v.pedirTamanio();
+                        autor = v.pedirAutor();
+                        fechaDePublicacion = v.pedirFechaDePublicacion();
+                        if(incluirHashtags()){
+                            hashtags = v.pedirHashtags();
+                        }
+                        posts.add(new PostImagen(formato, resolucion, url, tamanio, autor, hashtags, fechaDePublicacion));
+                        opcionValida = true;
+                        v.mostrarPublicado();
+                        v.MostrarPost(posts.get(0));
                     break;
                     case 4: // Video
                     break;

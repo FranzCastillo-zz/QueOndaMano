@@ -6,11 +6,7 @@ import java.util.Date;
 public class PostTexto extends Post{
     private String mensaje;
 
-    public PostTexto(String mensaje, String autor, Date fechaDePublicacion){
-        super(autor, fechaDePublicacion);
-        this.mensaje = mensaje;
-    }
-    public PostTexto(String mensaje, ArrayList<String> hashtags, String autor, Date fechaDePublicacion){
+    public PostTexto(String mensaje, String autor, ArrayList<String> hashtags, Date fechaDePublicacion){
         super(autor, hashtags, fechaDePublicacion);
         this.mensaje = mensaje;
     }
@@ -30,6 +26,7 @@ public class PostTexto extends Post{
         for (String comentario : this.getComentarios()) {
             post += "(" + i++ + ")\t" + comentario + "\n";
         }
+        post += "-------------------------------------------------\n";
         return post;
     }
 }

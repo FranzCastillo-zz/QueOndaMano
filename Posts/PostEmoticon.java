@@ -6,14 +6,11 @@ import java.util.Date;
 public class PostEmoticon extends Post{
     private String emoticon;
 
-    public PostEmoticon(String emoticon, String autor, Date fechaDePublicacion){
-        super(autor, fechaDePublicacion);
+    public PostEmoticon(String emoticon, String autor, ArrayList<String> hashtags, Date fechaDePublicacion){
+        super(autor, hashtags, fechaDePublicacion);
         this.emoticon = emoticon;
     }
-    public PostEmoticon(String mensaje, ArrayList<String> hashtags, String autor, Date fechaDePublicacion){
-        super(autor, hashtags, fechaDePublicacion);
-        this.emoticon = mensaje;
-    }
+    
     public String getPost(){
         String post = "";
         post += "-------------------------------------------------\n";
@@ -30,6 +27,7 @@ public class PostEmoticon extends Post{
         for (String comentario : this.getComentarios()) {
             post += "(" + i++ + ")\t" + comentario + "\n";
         }
+        post += "-------------------------------------------------\n";
         return post;
     }
 }

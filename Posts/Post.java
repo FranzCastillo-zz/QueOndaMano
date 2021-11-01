@@ -2,6 +2,8 @@ package Posts;
 
 import java.util.Date;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public abstract class Post {
     private String autor;
@@ -10,14 +12,6 @@ public abstract class Post {
     private ArrayList<String> comentarios;
     private ArrayList<String> hashtags;
 
-    //SI NO RECIBE HASHTAGS
-    public Post(String autor, Date fechaDePublicacion){
-        this.autor = autor;
-        this.fechaDePublicacion = fechaDePublicacion;
-        this.likes = 0;
-        this.comentarios = new ArrayList<>();
-        this.hashtags = new ArrayList<>();
-    }
     //SI RECIBE HASHTAGS
     public Post(String autor, ArrayList<String> hashtags, Date fechaDePublicacion){
         this.autor = autor;
@@ -63,8 +57,11 @@ public abstract class Post {
     /** 
      * @return Date La fecha de publicacion del post
      */
-    protected Date getFechaDePublicacion(){
-        return this.fechaDePublicacion;
+    protected String getFechaDePublicacion(){
+        Date date = this.fechaDePublicacion;
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String fecha = localDate.getDayOfMonth() + "/" + localDate.getMonthValue() + "/" + localDate.getYear();
+        return fecha; 
     }
     
     /** 
