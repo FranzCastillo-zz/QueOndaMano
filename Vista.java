@@ -250,4 +250,70 @@ public class Vista {
             return 60;
         }
     }
+    public double pedirSampleRate(){
+        boolean ingresoValido = false;
+        int opcion = -1;
+        while(!ingresoValido){
+            prnt("Desea especificar el Sample Rate de su audio?");
+            prnt("1. Si");
+            prnt("2. No");
+            try{
+                opcion = scan.nextInt();
+                scan.nextLine();
+                ingresoValido = true;
+            }catch(Exception e){
+                scan.next();
+                mostrarOpcionInvalida();
+            }
+        }
+
+        if(opcion == 1){
+            while(true){
+                try{
+                    prnt("Ingrese el numero de kGHz de su audio (solo el numero)");
+                    int sampleRate = scan.nextInt();
+                    scan.nextLine();
+                    return sampleRate;
+                }catch(Exception e){
+                    scan.next();
+                    prnt("Ingreso una resolucion invalida. Pruebe de nuevo");
+                }
+            }
+        }else{
+            return 44.1;
+        }
+    }
+    public int pedirBitDepth(){
+        boolean ingresoValido = false;
+        int opcion = -1;
+        while(!ingresoValido){
+            prnt("Desea especificar el Bit Depth de su audio?");
+            prnt("1. Si");
+            prnt("2. No");
+            try{
+                opcion = scan.nextInt();
+                scan.nextLine();
+                ingresoValido = true;
+            }catch(Exception e){
+                scan.next();
+                mostrarOpcionInvalida();
+            }
+        }
+
+        if(opcion == 1){
+            while(true){
+                try{
+                    prnt("Ingrese el Bit Depth de su audio (solo el numero)");
+                    int sampleRate = scan.nextInt();
+                    scan.nextLine();
+                    return sampleRate;
+                }catch(Exception e){
+                    scan.next();
+                    prnt("Ingreso un bit depth invalido. Pruebe de nuevo");
+                }
+            }
+        }else{
+            return 16;
+        }
+    }
 }

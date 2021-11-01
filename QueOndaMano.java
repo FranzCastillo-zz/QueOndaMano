@@ -88,6 +88,16 @@ public class QueOndaMano {
                         v.mostrarPublicado();
                     break;
                     case 5: // Audio
+                        double sampleRate = v.pedirSampleRate();
+                        int bitDepth = v.pedirBitDepth();
+                        url = v.pedirURL();
+                        tamanio = v.pedirTamanio();
+                        autor = v.pedirAutor();
+                        fechaDePublicacion = v.pedirFechaDePublicacion();
+                        hashtags = v.pedirHashtags();
+                        posts.add(new Posts.Multimedia.PostAudio(sampleRate, bitDepth, url, tamanio, autor, hashtags, fechaDePublicacion));
+                        opcionValida = true;
+                        v.mostrarPublicado();
                     break;
                     default:
                         v.mostrarOpcionInvalida();
