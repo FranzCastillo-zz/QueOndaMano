@@ -154,4 +154,8 @@ public class Vista {
     public void mostrarPublicado(){
         prnt("Se ha publicado con exito!");
     }
+    public String pedirEmoticon(){
+        prnt("Ingrese el emoticon de su publicacion: ");
+        return scan.nextLine();
+    }
 }

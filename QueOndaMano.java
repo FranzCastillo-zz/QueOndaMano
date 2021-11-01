@@ -18,12 +18,14 @@ public class QueOndaMano {
                 switch(opcion){
                     case 1: // PUBLICAR
                         hacerPost();
+                        opcionValida = true;
                     break;
                     case 2: // FILTRAR POR FECHA
                     break;
                     case 3: // FILTRAR POR #
                     break;
                     case 4: // SALIR
+                        System.exit(1);
                     break;
                     default:
                         v.mostrarOpcionInvalida();
@@ -51,20 +53,34 @@ public class QueOndaMano {
         boolean opcionValida = false;
             while(!opcionValida){
                 int opcion = v.mostrarMenuTipoPost();
+                String autor;
+                Date fechaDePublicacion;
                 switch(opcion){
                     case 1: // Texto
                         String mensaje = v.pedirMensaje();
-                        ArrayList<String> hashtags = new ArrayList<>();
+                        autor = v.pedirAutor();
+                        fechaDePublicacion = v.pedirFechaDePublicacion();
                         if(incluirHashtags()){
-                            hashtags = v.pedirHashtags();
+                            ArrayList<String> hashtags = v.pedirHashtags();
+                            posts.add(new Posts.PostTexto(mensaje, hashtags, autor, fechaDePublicacion));
+                        }else{
+                            posts.add(new Posts.PostTexto(mensaje, autor, fechaDePublicacion));
                         }
-                        String autor = v.pedirAutor();
-                        Date fechaDePublicacion = v.pedirFechaDePublicacion();
-                        posts.add(new PostTexto(mensaje, hashtags, autor, fechaDePublicacion));
                         opcionValida = true;
                         v.mostrarPublicado();
                     break;
                     case 2: // Emoticon
+                        String emoticon = v.pedirEmoticon();
+                        autor = v.pedirAutor();
+                        fechaDePublicacion = v.pedirFechaDePublicacion();
+                        if(incluirHashtags()){
+                            ArrayList<String> hashtags = v.pedirHashtags();
+                            posts.add(new Posts.PostEmoticon(emoticon, hashtags, autor, fechaDePublicacion));
+                        }else{
+                            posts.add(new Posts.PostEmoticon(emoticon, autor, fechaDePublicacion));
+                        }
+                        opcionValida = true;
+                        v.mostrarPublicado();
                     break;
                     case 3: // Imagen
                     break;
