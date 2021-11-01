@@ -3,17 +3,15 @@ package Posts.Multimedia;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PostImagen extends PostMultimedia {
-    private String formato;
-    private int resolucion;
+public class PostVideo extends PostMultimedia {
+    private int frameRate;
 
-    public PostImagen(String formato, int resolucion, String url, int tamanio, String autor, ArrayList<String> hashtags, Date fechaDePublicacion){
+    public PostVideo(int frameRate, String url, int tamanio, String autor, ArrayList<String> hashtags, Date fechaDePublicacion){
         super(url, tamanio, autor, hashtags, fechaDePublicacion);
-        this.formato = formato;
-        this.resolucion = resolucion;
+        this.frameRate = frameRate;
     }
     protected String getDetalles(){
-        String detalles = "Detalles: " + this.getTamanio() + " KB, " + this.formato + ", " + this.resolucion + " mpx\n";
+        String detalles = "Detalles: " + this.getTamanio() + " KB, Frame Rate:" + this.frameRate + "\n";
         return detalles;
     }
     public String getPost(){
@@ -26,7 +24,7 @@ public class PostImagen extends PostMultimedia {
         }
         post += "\n";
         post += "Likes: " + this.getLikes() + "\n";
-        post += "(imagen) " + this.getURL() + "\n\n";
+        post += "(video) " + this.getURL() + "\n\n";
         post += ">>>>> Comentarios:\n";
         int i = 1;
         for (String comentario : this.getComentarios()) {
@@ -37,7 +35,7 @@ public class PostImagen extends PostMultimedia {
         return post;
     }
     public String play(){
-        String play = "*se esta mostrando esta imagen (" + this.getURL() + ") con " + this.resolucion + " megapixeles de resolucion*";
+        String play = "*se esta reproduciendo este video (" + this.getURL() + ") a " + this.frameRate + " fps*";
         return play;
     }
 }

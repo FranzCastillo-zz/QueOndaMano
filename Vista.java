@@ -62,35 +62,39 @@ public class Vista {
             }
         }
     }
-    public int incluirHashtags(){
-        prnt("Desea agregar hashtags a su publicacion?");
-        prnt("1. Si");
-        prnt("2. No");
-        try{
-            int opcion = scan.nextInt();
-            scan.nextLine();
-            return opcion;
-        }catch(Exception e){
-            scan.next();
-            return -1;
-        }
-    }
     public ArrayList<String> pedirHashtags(){
-        boolean ingresoInvalido = true;
-        while(ingresoInvalido){
-            prnt("Ingrese los #'s de su publicacion: (Ej. #Publicacion, #Like)");
-            String ingreso = scan.nextLine();
-            ArrayList<String> hashtags = new ArrayList<>(Arrays.asList(ingreso.trim().split("\\s*,\\s*") ));
-            for (String hashtag : hashtags) {
-                if(!hashtag.startsWith("#")){
-                    ingresoInvalido = true;
-                }   
+        boolean ingresoValido = false;
+        int opcion = -1;
+        while(!ingresoValido){
+            prnt("Desea agregar hashtags a su publicacion?");
+            prnt("1. Si");
+            prnt("2. No");
+            try{
+                opcion = scan.nextInt();
+                scan.nextLine();
+                ingresoValido = true;
+            }catch(Exception e){
+                scan.next();
+                mostrarOpcionInvalida();
             }
-            if(!ingresoInvalido){
-                prnt("Al menos uno de los ingresos no contenia '#'. Pruebe de nuevo.");
-            }else{
-                return hashtags;
-            }
+        }
+        if(opcion == 1){
+            boolean ingresoInvalido = true;
+            while(ingresoInvalido){
+                prnt("Ingrese los #'s de su publicacion: (Ej. #Publicacion, #Like)");
+                String ingreso = scan.nextLine();
+                ArrayList<String> hashtags = new ArrayList<>(Arrays.asList(ingreso.trim().split("\\s*,\\s*") ));
+                for (String hashtag : hashtags) {
+                    if(!hashtag.startsWith("#")){
+                        ingresoInvalido = true;
+                    }   
+                }
+                if(!ingresoInvalido){
+                    prnt("Al menos uno de los ingresos no contenia '#'. Pruebe de nuevo.");
+                }else{
+                    return hashtags;
+                }
+            }        
         }
         return null;
     }
@@ -113,64 +117,6 @@ public class Vista {
             }
         }
         return temp;
-        /*int anio = -1;
-        int mes = -1;
-        int dia = -1;
-        int temp = -1;
-        boolean ingresoValido = false;
-        
-        //Dia
-        prnt("Ingrese el dia de publicacion: ");
-        ingresoValido = false;
-        while(!ingresoValido){
-            try{
-                temp = scan.nextInt();
-                scan.nextLine();
-                if(temp > 0 && temp <= 31){
-                    dia = temp;
-                    ingresoValido = true;
-                }else{
-                    mostrarOpcionInvalida();
-                }
-            }catch(Exception e){
-                scan.next();           
-            }
-        }
-        //MES
-        prnt("Ingrese el mes de publicacion: (1-12)");
-        ingresoValido = false;
-        while(!ingresoValido){
-            try{
-                temp = scan.nextInt();
-                scan.nextLine();
-                if(temp > 0 && temp <= 12){
-                    mes = temp;
-                    ingresoValido = true;
-                }else{
-                    mostrarOpcionInvalida();
-                }
-            }catch(Exception e){
-                scan.next();           
-            }
-        }
-        //ANIO
-        prnt("Ingrese el anio de publicacion:");
-        while(!ingresoValido){
-            try{
-                temp = scan.nextInt();
-                scan.nextLine();
-                if(temp > 1900 && temp <= 2021){
-                    anio = temp;
-                    ingresoValido = true;
-                }else{
-                    mostrarOpcionInvalida();
-                }
-            }catch(Exception e){
-                scan.next();           
-            }
-        }
-        String sDate1="31/12/1998";
-        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);*/
     }
     public void mostrarPublicado(){
         prnt("Se ha publicado con exito!");
@@ -270,6 +216,38 @@ public class Vista {
             }
         }else{
             return 120;
+        }
+    }
+    public int pedirFrameRate(){
+        boolean ingresoValido = false;
+        int opcion = -1;
+        while(!ingresoValido){
+            prnt("Desea especificar el Frame Rate de su video?");
+            prnt("1. Si");
+            prnt("2. No");
+            try{
+                opcion = scan.nextInt();
+                scan.nextLine();
+                ingresoValido = true;
+            }catch(Exception e){
+                scan.next();
+                mostrarOpcionInvalida();
+            }
+        }
+        if(opcion == 1){
+            while(true){
+                prnt("Ingrese el Frame Rate de su video en Frames Per Second (fps): (Solo el numero)");
+                try{
+                    int tamanio = scan.nextInt();
+                    scan.nextLine();
+                    return tamanio;
+                }catch(Exception e){
+                    scan.next();
+                    mostrarOpcionInvalida();
+                }
+            }
+        }else{
+            return 60;
         }
     }
 }

@@ -36,36 +36,21 @@ public class QueOndaMano {
             }
         }
     }
-
-    private boolean incluirHashtags(){
-        while(true){
-            int incluirHashtags = v.incluirHashtags();
-            switch(incluirHashtags){
-                case 1:
-                    return true;
-                case 2:
-                    return false;
-                default:
-                    v.mostrarOpcionInvalida();
-                break;
-            }
-        }
-    }
     private void hacerPost(){
         boolean opcionValida = false;
             while(!opcionValida){
                 int opcion = v.mostrarMenuTipoPost();
                 String autor;
                 Date fechaDePublicacion;
+                String url;
+                int tamanio;
                 ArrayList<String> hashtags = new ArrayList<>();
                 switch(opcion){
                     case 1: // Texto
                         String mensaje = v.pedirMensaje();
                         autor = v.pedirAutor();
                         fechaDePublicacion = v.pedirFechaDePublicacion();
-                        if(incluirHashtags()){
-                            hashtags = v.pedirHashtags();
-                        }
+                        hashtags = v.pedirHashtags();
                         posts.add(new PostTexto(mensaje, autor, hashtags, fechaDePublicacion));
                         opcionValida = true;
                         v.mostrarPublicado();
@@ -74,9 +59,7 @@ public class QueOndaMano {
                         String emoticon = v.pedirEmoticon();
                         autor = v.pedirAutor();
                         fechaDePublicacion = v.pedirFechaDePublicacion();
-                        if(incluirHashtags()){
-                            hashtags = v.pedirHashtags();
-                        }
+                        hashtags = v.pedirHashtags();
                         posts.add(new PostEmoticon(emoticon, autor, hashtags, fechaDePublicacion));
                         opcionValida = true;
                         v.mostrarPublicado();
@@ -84,19 +67,25 @@ public class QueOndaMano {
                     case 3: // Imagen
                         String formato = v.pedirFormato();
                         int resolucion = v.pedirResolucion();
-                        String url = v.pedirURL();
-                        int tamanio = v.pedirTamanio();
+                        url = v.pedirURL();
+                        tamanio = v.pedirTamanio();
                         autor = v.pedirAutor();
                         fechaDePublicacion = v.pedirFechaDePublicacion();
-                        if(incluirHashtags()){
-                            hashtags = v.pedirHashtags();
-                        }
+                        hashtags = v.pedirHashtags();
                         posts.add(new PostImagen(formato, resolucion, url, tamanio, autor, hashtags, fechaDePublicacion));
                         opcionValida = true;
                         v.mostrarPublicado();
-                        v.MostrarPost(posts.get(0));
                     break;
                     case 4: // Video
+                        int frameRate = v.pedirFrameRate();
+                        url = v.pedirURL();
+                        tamanio = v.pedirTamanio();
+                        autor = v.pedirAutor();
+                        fechaDePublicacion = v.pedirFechaDePublicacion();
+                        hashtags = v.pedirHashtags();
+                        posts.add(new Posts.Multimedia.PostVideo(frameRate, url, tamanio, autor, hashtags, fechaDePublicacion));
+                        opcionValida = true;
+                        v.mostrarPublicado();
                     break;
                     case 5: // Audio
                     break;
