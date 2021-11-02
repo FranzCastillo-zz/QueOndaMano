@@ -23,7 +23,7 @@ public class PostVideo extends PostMultimedia {
             post += hashtag + " ";
         }
         post += "\n";
-        post += "Likes: " + this.getLikes() + "\n";
+        post += "Likes: " + this.getLikes() + "\n\n";
         post += "(video) " + this.getURL() + "\n\n";
         post += ">>>>> Comentarios:\n";
         int i = 1;
@@ -37,5 +37,9 @@ public class PostVideo extends PostMultimedia {
     public String play(){
         String play = "*se esta reproduciendo este video (" + this.getURL() + ") a " + this.frameRate + " fps*";
         return play;
+    }
+    public String getEncabezado(){
+        String encabezado = "(Video) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
+        return encabezado;
     }
 }

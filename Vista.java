@@ -79,17 +79,17 @@ public class Vista {
             }
         }
         if(opcion == 1){
-            boolean ingresoInvalido = true;
-            while(ingresoInvalido){
+            while(true){
+                ingresoValido = true;
                 prnt("Ingrese los #'s de su publicacion: (Ej. #Publicacion, #Like)");
                 String ingreso = scan.nextLine();
                 ArrayList<String> hashtags = new ArrayList<>(Arrays.asList(ingreso.trim().split("\\s*,\\s*") ));
                 for (String hashtag : hashtags) {
                     if(!hashtag.startsWith("#")){
-                        ingresoInvalido = true;
+                        ingresoValido = false;
                     }   
                 }
-                if(!ingresoInvalido){
+                if(!ingresoValido){
                     prnt("Al menos uno de los ingresos no contenia '#'. Pruebe de nuevo.");
                 }else{
                     return hashtags;
@@ -315,5 +315,39 @@ public class Vista {
         }else{
             return 16;
         }
+    }
+    public void mostrarEncabezado(int i, Post post){
+        prnt(i + ") " + post.getEncabezado());
+    }
+    public int mostrarSeleccionarPost(int i){
+        while(true){
+            try{
+                prnt("Que post desea ver? Seleccione un numero entre 1 y " + i);
+                int ingreso = scan.nextInt();
+                scan.nextLine();
+                if(ingreso > 0 && ingreso <= i){
+                    return ingreso;
+                }else{
+                    mostrarOpcionInvalida();
+                }
+            }catch(Exception e){
+                scan.next();
+                mostrarOpcionInvalida();
+            }
+        }
+    }
+    public String pedirHashtagFiltrado(){
+        while(true){
+            prnt("Ingrese el # que desea buscar: (Ej. #Publicacion, #Like)");
+            String ingreso = scan.nextLine();
+            if(ingreso.startsWith("#")){
+                return ingreso;
+            }else{
+                mostrarOpcionInvalida();
+            }
+        }
+    }
+    public void mostrarNoHayResultados(){
+        prnt("No hay resultados para esta filtracion.");
     }
 }

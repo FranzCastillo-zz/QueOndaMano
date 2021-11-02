@@ -25,7 +25,7 @@ public class PostAudio extends PostMultimedia {
             post += hashtag + " ";
         }
         post += "\n";
-        post += "Likes: " + this.getLikes() + "\n";
+        post += "Likes: " + this.getLikes() + "\n\n";
         post += "(audio) " + this.getURL() + "\n\n";
         post += ">>>>> Comentarios:\n";
         int i = 1;
@@ -39,5 +39,9 @@ public class PostAudio extends PostMultimedia {
     public String play(){
         String play = "*se esta reproduciendo este audio (" + this.getURL() + ") con " + this.sampleRate + " kHz de Sample Rate y "+ this.bitDepth +" de Bit Depth*";
         return play;
+    }
+    public String getEncabezado(){
+        String encabezado = "(Audio) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
+        return encabezado;
     }
 }

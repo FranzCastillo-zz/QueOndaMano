@@ -18,7 +18,11 @@ public abstract class Post {
         this.fechaDePublicacion = fechaDePublicacion;
         this.likes = 0;
         this.comentarios = new ArrayList<>();
-        this.hashtags = hashtags;
+        if(hashtags == null){
+            this.hashtags = new ArrayList<>();
+        }else{
+            this.hashtags = hashtags;
+        }
     }
     
     /** 
@@ -57,7 +61,7 @@ public abstract class Post {
     /** 
      * @return Date La fecha de publicacion del post
      */
-    protected String getFechaDePublicacion(){
+    public String getFechaDePublicacion(){
         Date date = this.fechaDePublicacion;
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String fecha = localDate.getDayOfMonth() + "/" + localDate.getMonthValue() + "/" + localDate.getYear();
@@ -81,7 +85,10 @@ public abstract class Post {
     /** 
      * @return ArrayList<String> los hashtags de este post
      */
-    protected ArrayList<String> getHashtags(){
+    public ArrayList<String> getHashtags(){
         return this.hashtags;
     }
+
+    public abstract String getEncabezado();
+    abstract public String play();
 }

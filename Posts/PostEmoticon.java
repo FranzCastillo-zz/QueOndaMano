@@ -20,7 +20,7 @@ public class PostEmoticon extends Post{
             post += hashtag + " ";
         }
         post += "\n";
-        post += "Likes: " + this.getLikes() + "\n";
+        post += "Likes: " + this.getLikes() + "\n\n";
         post += "(emoticon) " + this.emoticon + "\n\n";
         post += ">>>>> Comentarios:\n";
         int i = 1;
@@ -29,5 +29,13 @@ public class PostEmoticon extends Post{
         }
         post += "-------------------------------------------------\n";
         return post;
+    }
+    public String getEncabezado(){
+        String encabezado = "(Emoticon) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
+        return encabezado;
+    }
+    public String play(){
+        String texto = "(emoticon) " + this.emoticon + "\n\n";
+        return texto;
     }
 }

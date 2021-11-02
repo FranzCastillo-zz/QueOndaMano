@@ -18,6 +18,5 @@ public abstract class PostMultimedia extends Post{
     protected int getTamanio(){
         return this.tamanio;
     }
-    abstract public String play();
     abstract protected String getDetalles();
 }

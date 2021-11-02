@@ -19,7 +19,7 @@ public class PostTexto extends Post{
             post += hashtag + " ";
         }
         post += "\n";
-        post += "Likes: " + this.getLikes() + "\n";
+        post += "Likes: " + this.getLikes() + "\n\n";
         post += "(texto) " + this.mensaje + "\n\n";
         post += ">>>>> Comentarios:\n";
         int i = 1;
@@ -28,5 +28,13 @@ public class PostTexto extends Post{
         }
         post += "-------------------------------------------------\n";
         return post;
+    }
+    public String getEncabezado(){
+        String encabezado = "(Texto) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
+        return encabezado;
+    }
+    public String play(){
+        String texto = "(texto) " + this.mensaje + "\n\n";
+        return texto;
     }
 }

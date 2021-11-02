@@ -25,7 +25,7 @@ public class PostImagen extends PostMultimedia {
             post += hashtag + " ";
         }
         post += "\n";
-        post += "Likes: " + this.getLikes() + "\n";
+        post += "Likes: " + this.getLikes() + "\n\n";
         post += "(imagen) " + this.getURL() + "\n\n";
         post += ">>>>> Comentarios:\n";
         int i = 1;
@@ -39,5 +39,9 @@ public class PostImagen extends PostMultimedia {
     public String play(){
         String play = "*se esta mostrando esta imagen (" + this.getURL() + ") con " + this.resolucion + " megapixeles de resolucion*";
         return play;
+    }
+    public String getEncabezado(){
+        String encabezado = "(Imagen) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
+        return encabezado;
     }
 }
