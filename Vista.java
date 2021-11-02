@@ -177,7 +177,7 @@ public class Vista {
     }
     public String pedirURL(){
         while(true){
-            prnt("Ingrese el URL de su imagen: (https://...");
+            prnt("Ingrese el URL de su archivo: (https://...");
             String ingreso = scan.nextLine();
             if(ingreso.startsWith("https://")){
                 return ingreso;
@@ -190,7 +190,7 @@ public class Vista {
         boolean ingresoValido = false;
         int opcion = -1;
         while(!ingresoValido){
-            prnt("Desea especificar el tamanio de su imagen?");
+            prnt("Desea especificar el tamanio de su archivo?");
             prnt("1. Si");
             prnt("2. No");
             try{
@@ -349,5 +349,42 @@ public class Vista {
     }
     public void mostrarNoHayResultados(){
         prnt("No hay resultados para esta filtracion.");
+    }
+    public int mostrarMenuInteractuar(){
+        int opcion = -1;
+        while(true){
+            prnt("Que desea hacer con la publicacion?");
+            prnt("1. Reproducir");
+            prnt("2. Dar Like");
+            prnt("3. Comentar");
+            prnt("4. Regresar");
+            try{
+                opcion = scan.nextInt();
+                scan.nextLine();
+                return opcion;
+            }catch(Exception e){
+                scan.next();
+                mostrarOpcionInvalida();
+            }
+        }
+    }
+    public void reproducir(Post post){
+        prnt(post.play());
+    }
+    public void like(){
+        prnt("Si. *le da like*");
+    }
+    public String comentar(){
+        while(true){
+            prnt("Ingrese el comentario para el post: (Max. 20 caracteres)");
+            String ingreso = scan.nextLine();
+            if(ingreso.length() > 0 && ingreso.length() <= 20){
+                return ingreso;
+            }else{
+                mostrarOpcionInvalida();
+            }
+        }
+        
+
     }
 }

@@ -21,6 +21,7 @@ public class QueOndaMano {
             boolean opcionValida = false;
             int i = -1;
             int postSeleccionado = -1;
+            Post postActual = null;
             while(!opcionValida){
                 int opcion = v.mostrarMenuPrincipal();
                 switch(opcion){
@@ -36,7 +37,9 @@ public class QueOndaMano {
                                 v.mostrarEncabezado(i++, post);
                             }
                             postSeleccionado = v.mostrarSeleccionarPost(paraMostrar.size()) - 1;
-                            v.MostrarPost(paraMostrar.get(postSeleccionado)); //FALTA AGREGAR EL "PLAY, LIKE Y COMENTAR"
+                            postActual = paraMostrar.get(postSeleccionado);
+                            v.MostrarPost(postActual); //FALTA AGREGAR EL "PLAY, LIKE Y COMENTAR"
+                            interactuar(postActual);
                         }else{
                             v.mostrarNoHayResultados();
                         }
@@ -50,7 +53,9 @@ public class QueOndaMano {
                                 v.mostrarEncabezado(i++, post);
                             }
                             postSeleccionado = v.mostrarSeleccionarPost(paraMostrar.size()) - 1;
-                            v.MostrarPost(paraMostrar.get(postSeleccionado)); //FALTA AGREGAR EL "PLAY, LIKE Y COMENTAR"
+                            postActual = paraMostrar.get(postSeleccionado);
+                            v.MostrarPost(postActual); //FALTA AGREGAR EL "PLAY, LIKE Y COMENTAR"
+                            interactuar(postActual);
                         }else{
                             v.mostrarNoHayResultados();
                         }
@@ -95,9 +100,9 @@ public class QueOndaMano {
                         v.mostrarPublicado();
                     break;
                     case 3: // Imagen
+                        url = v.pedirURL();    
                         String formato = v.pedirFormato();
                         int resolucion = v.pedirResolucion();
-                        url = v.pedirURL();
                         tamanio = v.pedirTamanio();
                         autor = v.pedirAutor();
                         fechaDePublicacion = v.pedirFechaDePublicacion();
@@ -151,18 +156,42 @@ public class QueOndaMano {
     private ArrayList<Post> filtrarPorHashtag(){
         ArrayList<Post> mostrar = new ArrayList<>();
         String hasthagParaFiltrar = v.pedirHashtagFiltrado();
-        boolean yaIngreso;
         for (Post post : posts) {
-            yaIngreso = false;
-            while(!yaIngreso){
-                for (String hashtag : post.getHashtags()) {
+            boolean ingreso = false;
+            for (String hashtag : post.getHashtags()) {
+                if(!ingreso){ //SI AUN NO HA INGRESADO
                     if(hashtag.equals(hasthagParaFiltrar)){
                         mostrar.add(post);
-                        yaIngreso = true;
+                        ingreso = true;
                     }
                 }
             }
         }
         return mostrar;
+    }
+    private void interactuar(Post post){
+        boolean regresar = false;
+        int opcion = -1;
+        while(!regresar){
+            opcion = v.mostrarMenuInteractuar();
+            switch(opcion){
+                case 1: //REPRODUCIR
+                    v.reproducir(post);
+                break;
+                case 2: //Like
+                    post.like();
+                    v.like();
+                    v.MostrarPost(post);
+                break;
+                case 3: //comentar
+                    String comentario = v.comentar();
+                    post.comentar(comentario);
+                    v.MostrarPost(post);
+                break;
+                case 4: //regresar
+                    regresar = true;
+                break;
+            }
+        }
     }
 }
