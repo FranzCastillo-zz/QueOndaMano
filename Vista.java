@@ -1,3 +1,11 @@
+/*
+
+    Vista.java
+    Autor: Francisco Javier Castillo Cerna 21562
+    Encargado de mostrar y recibir las interacciones del usuario
+
+*/
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +18,10 @@ public class Vista {
     public Vista(){
         scan = new Scanner(System.in);
     }
+    
+    /** 
+     * @param texto El texto a mostrar en consola
+     */
     private void prnt(String texto){
         System.out.println(texto);
     }
@@ -20,6 +32,10 @@ public class Vista {
     public void mostrarOpcionInvalida(){
         prnt("Ha ingresado una opcion invalida. Pruebe de nuevo");
     }
+    
+    /** 
+     * @return int la opcion seleccionada del menu
+     */
     public int mostrarMenuPrincipal(){
         prnt("Que desea hacer?");
         prnt("1. Publicar");
@@ -35,6 +51,10 @@ public class Vista {
             return -1;
         }
     }
+    
+    /** 
+     * @return int la opcion seleccionada del menu
+     */
     public int mostrarMenuTipoPost(){
         prnt("Que tipo de post desea publicar?");
         prnt("1. Texto");
@@ -51,6 +71,10 @@ public class Vista {
             return -1;
         }
     }
+    
+    /** 
+     * @return String el mensaje de la publicacion de texto
+     */
     public String pedirMensaje(){
         while(true){
             prnt("Ingrese el texto de su publicacion: (Max 20 caracteres)");
@@ -62,6 +86,10 @@ public class Vista {
             }
         }
     }
+    
+    /** 
+     * @return ArrayList<String> Los hashtags en un arraylist
+     */
     public ArrayList<String> pedirHashtags(){
         boolean ingresoValido = false;
         int opcion = -1;
@@ -98,10 +126,18 @@ public class Vista {
         }
         return null;
     }
+    
+    /** 
+     * @return String El autor del post
+     */
     public String pedirAutor(){
         prnt("Que nombre de usuario desea que apareza en la publicacion?");
         return scan.nextLine();
     }
+    
+    /** 
+     * @return Date La fecha de publicacion del post
+     */
     public Date pedirFechaDePublicacion(){
         boolean ingresoValido = false;
         Date temp = null;
@@ -121,13 +157,25 @@ public class Vista {
     public void mostrarPublicado(){
         prnt("Se ha publicado con exito!");
     }
+    
+    /** 
+     * @return String El emoticon del post
+     */
     public String pedirEmoticon(){
         prnt("Ingrese el emoticon de su publicacion: ");
         return scan.nextLine();
     }
+    
+    /** 
+     * @param post El post que se mostrara
+     */
     public void MostrarPost(Post post){
         prnt(post.getPost());
     }
+    
+    /** 
+     * @return String El formato del post de imagen
+     */
     public String pedirFormato(){
         String ingreso = "";
         boolean ingresoValido = false;
@@ -142,6 +190,10 @@ public class Vista {
         }
         return ingreso;
     }
+    
+    /** 
+     * @return int La resolucion de la imagen
+     */
     public int pedirResolucion(){
         boolean ingresoValido = false;
         int opcion = -1;
@@ -175,6 +227,10 @@ public class Vista {
             return 2;
         }
     }
+    
+    /** 
+     * @return String El URL de larchivo multimedia para el post
+     */
     public String pedirURL(){
         while(true){
             prnt("Ingrese el URL de su archivo: (https://...");
@@ -186,6 +242,10 @@ public class Vista {
             }
         }
     }
+    
+    /** 
+     * @return int el tamanio del archivo del post
+     */
     public int pedirTamanio(){
         boolean ingresoValido = false;
         int opcion = -1;
@@ -218,6 +278,10 @@ public class Vista {
             return 120;
         }
     }
+    
+    /** 
+     * @return int el frame rate del video para post
+     */
     public int pedirFrameRate(){
         boolean ingresoValido = false;
         int opcion = -1;
@@ -250,6 +314,10 @@ public class Vista {
             return 60;
         }
     }
+    
+    /** 
+     * @return double el sample rate del video para post
+     */
     public double pedirSampleRate(){
         boolean ingresoValido = false;
         int opcion = -1;
@@ -270,7 +338,7 @@ public class Vista {
         if(opcion == 1){
             while(true){
                 try{
-                    prnt("Ingrese el numero de kGHz de su audio (solo el numero)");
+                    prnt("Ingrese el numero de kHz de su audio (solo el numero)");
                     int sampleRate = scan.nextInt();
                     scan.nextLine();
                     return sampleRate;
@@ -283,6 +351,10 @@ public class Vista {
             return 44.1;
         }
     }
+    
+    /** 
+     * @return int el bit depth del audio para post
+     */
     public int pedirBitDepth(){
         boolean ingresoValido = false;
         int opcion = -1;
@@ -316,9 +388,19 @@ public class Vista {
             return 16;
         }
     }
+    
+    /** 
+     * @param i El numero de encabezado que es
+     * @param post El post acorde al numero de encabezado
+     */
     public void mostrarEncabezado(int i, Post post){
         prnt(i + ") " + post.getEncabezado());
     }
+    
+    /** 
+     * @param i el limite de posts que hay para mostrar
+     * @return int el numero de post seleccionado
+     */
     public int mostrarSeleccionarPost(int i){
         while(true){
             try{
@@ -336,6 +418,10 @@ public class Vista {
             }
         }
     }
+    
+    /** 
+     * @return String El Hashtag que se busca
+     */
     public String pedirHashtagFiltrado(){
         while(true){
             prnt("Ingrese el # que desea buscar: (Ej. #Publicacion, #Like)");
@@ -350,6 +436,10 @@ public class Vista {
     public void mostrarNoHayResultados(){
         prnt("No hay resultados para esta filtracion.");
     }
+    
+    /** 
+     * @return int la opcion seleccionadda para interactuar con el post
+     */
     public int mostrarMenuInteractuar(){
         int opcion = -1;
         while(true){
@@ -368,12 +458,20 @@ public class Vista {
             }
         }
     }
+    
+    /** 
+     * @param post que se reproducira
+     */
     public void reproducir(Post post){
         prnt(post.play());
     }
     public void like(){
         prnt("Si. *le da like*");
     }
+    
+    /** 
+     * @return String El comentario a colocar en el post
+     */
     public String comentar(){
         while(true){
             prnt("Ingrese el comentario para el post: (Max. 20 caracteres)");

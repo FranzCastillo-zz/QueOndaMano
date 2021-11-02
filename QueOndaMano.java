@@ -1,3 +1,11 @@
+/*
+
+    QueOndaMano.java
+    Autor: Francisco Javier Castillo Cerna 21562
+    Controlador para toda la plataforma de "QueOndaMano"
+
+*/
+
 import Posts.*;
 import Posts.Multimedia.PostImagen;
 
@@ -140,6 +148,10 @@ public class QueOndaMano {
                 }
             }
     }
+    
+    /** 
+     * @return ArrayList<Post> Los Posts que cumplen con el criterio de filtracion
+     */
     private ArrayList<Post> filtrarPorFecha(){
         ArrayList<Post> mostrar = new ArrayList<>();
         Date paraBuscar = v.pedirFechaDePublicacion();
@@ -153,6 +165,10 @@ public class QueOndaMano {
         }
         return mostrar;
     }
+    
+    /** 
+     * @return ArrayList<Post> Los Posts que cumplen con el criterio de filtracion
+     */
     private ArrayList<Post> filtrarPorHashtag(){
         ArrayList<Post> mostrar = new ArrayList<>();
         String hasthagParaFiltrar = v.pedirHashtagFiltrado();
@@ -169,6 +185,10 @@ public class QueOndaMano {
         }
         return mostrar;
     }
+    
+    /** 
+     * @param post El post con el que se interactua
+     */
     private void interactuar(Post post){
         boolean regresar = false;
         int opcion = -1;

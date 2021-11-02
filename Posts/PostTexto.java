@@ -1,3 +1,11 @@
+/*
+
+    PostTexto.java
+    Autor: Francisco Javier Castillo Cerna 21562
+    Modelo de los Posts de tipo Texto, hereda de Post
+
+*/
+
 package Posts;
 
 import java.util.ArrayList;
@@ -10,6 +18,10 @@ public class PostTexto extends Post{
         super(autor, hashtags, fechaDePublicacion);
         this.mensaje = mensaje;
     }
+    
+    /** 
+     * @return String El post expandido
+     */
     public String getPost(){
         String post = "";
         post += "-------------------------------------------------\n";
@@ -29,10 +41,18 @@ public class PostTexto extends Post{
         post += "-------------------------------------------------\n";
         return post;
     }
+    
+    /** 
+     * @return String El encabezado para seleccionar un post
+     */
     public String getEncabezado(){
         String encabezado = "(Texto) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
         return encabezado;
     }
+    
+    /** 
+     * @return String El resultado de reproducir el post de texto
+     */
     public String play(){
         String texto = "(texto) " + this.mensaje + "\n\n";
         return texto;

@@ -1,3 +1,11 @@
+/*
+
+    PostVideo.java
+    Autor: Francisco Javier Castillo Cerna 21562
+    Modelo de los Posts de tipo Video, hereda de PostMultimedia
+
+*/
+
 package Posts.Multimedia;
 
 import java.util.ArrayList;
@@ -10,10 +18,18 @@ public class PostVideo extends PostMultimedia {
         super(url, tamanio, autor, hashtags, fechaDePublicacion);
         this.frameRate = frameRate;
     }
+    
+    /** 
+     * @return String Los detalles del archivo del post
+     */
     protected String getDetalles(){
         String detalles = "Detalles: " + this.getTamanio() + " KB, Frame Rate:" + this.frameRate + "\n";
         return detalles;
     }
+    
+    /** 
+     * @return String El post extendido
+     */
     public String getPost(){
         String post = "";
         post += "-------------------------------------------------\n";
@@ -34,10 +50,18 @@ public class PostVideo extends PostMultimedia {
         post += "-------------------------------------------------\n";
         return post;
     }
+    
+    /** 
+     * @return String El efecto de reproducir el post de Video
+     */
     public String play(){
         String play = "*se esta reproduciendo este video (" + this.getURL() + ") a " + this.frameRate + " fps*";
         return play;
     }
+    
+    /** 
+     * @return String el encabezado para seleccionar el post
+     */
     public String getEncabezado(){
         String encabezado = "(Video) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
         return encabezado;

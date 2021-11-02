@@ -1,3 +1,11 @@
+/*
+
+    PostAudio.java
+    Autor: Francisco Javier Castillo Cerna 21562
+    Modelo de los Posts de tipo Audio, hereda de PostMultimedia
+
+*/
+
 package Posts.Multimedia;
 
 import java.util.ArrayList;
@@ -12,10 +20,18 @@ public class PostAudio extends PostMultimedia {
         this.sampleRate = sampleRate;
         this.bitDepth = bitDepth;
     }
+    
+    /** 
+     * @return String Los detalles del archivo del post
+     */
     protected String getDetalles(){
         String detalles = "Detalles: " + this.getTamanio() + " KB, Sample Rate: " + this.sampleRate + "kHz, Bit Depth: " + this.bitDepth + "\n";
         return detalles;
     }
+    
+    /** 
+     * @return String El post expandido
+     */
     public String getPost(){
         String post = "";
         post += "-------------------------------------------------\n";
@@ -36,10 +52,18 @@ public class PostAudio extends PostMultimedia {
         post += "-------------------------------------------------\n";
         return post;
     }
+    
+    /** 
+     * @return String el efecto de reproducir el audio
+     */
     public String play(){
         String play = "*se esta reproduciendo este audio (" + this.getURL() + ") con " + this.sampleRate + " kHz de Sample Rate y "+ this.bitDepth +" de Bit Depth*";
         return play;
     }
+    
+    /** 
+     * @return String el encabezado para seleccionar este post.
+     */
     public String getEncabezado(){
         String encabezado = "(Audio) De " + this.getAutor() + ". Publicdo el: " + this.getFechaDePublicacion();
         return encabezado;

@@ -1,3 +1,11 @@
+/*
+
+    Post.java
+    Autor: Francisco Javier Castillo Cerna 21562
+    Modelo de los Posts, clase madre para todas las clases del paquete Posts
+
+*/
+
 package Posts;
 
 import java.util.Date;

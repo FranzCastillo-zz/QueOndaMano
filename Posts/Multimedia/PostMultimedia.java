@@ -1,3 +1,11 @@
+/*
+
+    PostMultimedia.java
+    Autor: Francisco Javier Castillo Cerna 21562
+    Modelo de los Posts de tipo Multimedia, clase madre, hereda de Post
+
+*/
+
 package Posts.Multimedia;
 
 import Posts.Post;
@@ -12,9 +20,17 @@ public abstract class PostMultimedia extends Post{
         this.url = url;
         this.tamanio = tamanio;
     }
+    
+    /** 
+     * @return String Obtiene el URL del archivo de la publicacion multimedia
+     */
     protected String getURL(){
         return this.url;
     }
+    
+    /** 
+     * @return int El tamanio del archivo del Post
+     */
     protected int getTamanio(){
         return this.tamanio;
     }
